@@ -1,4 +1,4 @@
-# todennus-migration
+# migration
 Migration files of Todennus
 
 ## Get started

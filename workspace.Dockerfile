@@ -1,9 +1,9 @@
 FROM golang:1.23-alpine AS build
 
-WORKDIR /todennus-migration
+WORKDIR /migration
 
-COPY ./todennus-migration/go.mod .
-COPY ./todennus-migration/go.sum .
+COPY ./migration/go.mod .
+COPY ./migration/go.sum .
 
 RUN go mod download
 
@@ -17,6 +17,6 @@ FROM scratch
 WORKDIR /
 
 COPY --from=build /migrate /
-COPY --from=build /todennus-migration/postgres/migration /postgres/migration
+COPY --from=build /migration/postgres/migration /postgres/migration
 
 ENTRYPOINT ["/migrate", "--env", "", "--path", "/"]

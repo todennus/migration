@@ -13,7 +13,7 @@ var downFlag int
 var postgresFlag bool
 
 var rootCommand = &cobra.Command{
-	Use:   "todennus-migration",
+	Use:   "migration",
 	Short: "Migrate database of Todennus",
 	Run: func(cmd *cobra.Command, args []string) {
 		envPaths, err := cmd.Flags().GetStringArray("env")
