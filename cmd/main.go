@@ -5,8 +5,8 @@ import (
 	"path"
 
 	"github.com/spf13/cobra"
-	"github.com/todennus/config"
 	"github.com/todennus/migration/postgres"
+	"github.com/todennus/shared/config"
 )
 
 var downFlag int
