@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/todennus/config"
+	"github.com/todennus/shared/config"
 	"github.com/todennus/x/xcontext"
 	postgresDriver "gorm.io/driver/postgres"
 	"gorm.io/gorm"
