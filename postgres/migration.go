@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
-	"github.com/todennus/x/xcontext"
+	"github.com/todennus/shared/xcontext"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"

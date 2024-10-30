@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/todennus/shared/config"
-	"github.com/todennus/x/xcontext"
 	postgresDriver "gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
@@ -29,13 +28,13 @@ func Initialize(ctx context.Context, config *config.Config) (*gorm.DB, error) {
 	for i := 0; i < config.Variable.Postgres.RetryInterval; i++ {
 		postgresDB, err = gorm.Open(
 			postgresDriver.Open(config.Secret.Postgres.DSN),
-			&gorm.Config{Logger: newLogger},
+			&gorm.Config{Logger: newLogger, TranslateError: true},
 		)
 		if err == nil {
 			break
 		}
 
-		xcontext.Logger(ctx).Warn("failed-to-connect-to-postgres", "err", err)
+		config.Logger.Warn("failed-to-connect-to-postgres", "err", err)
 		time.Sleep(time.Duration(config.Variable.Postgres.RetryAttempts) * time.Second)
 	}
 
@@ -43,6 +42,6 @@ func Initialize(ctx context.Context, config *config.Config) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	xcontext.Logger(ctx).Info("connect postgres successfully")
+	config.Logger.Info("connect postgres successfully")
 	return postgresDB, nil
 }
