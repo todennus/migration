@@ -48,10 +48,12 @@ var rootCommand = &cobra.Command{
 				if err := postgres.Up(context.Background(), db, postgresPath); err != nil {
 					panic(err)
 				}
+				config.Logger.Info("postgres: migration up successfully")
 			} else {
 				if err := postgres.Down(context.Background(), db, postgresPath, downFlag); err != nil {
 					panic(err)
 				}
+				config.Logger.Info("postgres: migration down successfully")
 			}
 		}
 	},
