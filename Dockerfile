@@ -18,4 +18,4 @@ WORKDIR /
 COPY --from=build /migrate /
 COPY --from=build /migration/postgres/migration /postgres/migration
 
-ENTRYPOINT ["/migrate", "--env", "", "--path", "/", "--postgres"]
+ENTRYPOINT ["/migrate", "--env", "", "--path", "/"]
